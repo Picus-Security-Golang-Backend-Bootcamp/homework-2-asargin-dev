@@ -8,6 +8,9 @@ import (
 	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-2-asargin-dev/utils"
 )
 
+func init() {
+}
+
 func main() {
 
 	args := os.Args
@@ -25,6 +28,12 @@ func main() {
 
 		switch args[1] {
 
+		case "buy":
+			fmt.Println("Uygulama Yapım Aşamasındadır")
+
+		case "delete":
+			fmt.Println("Uygulama Yapım Aşamasındadır")
+
 		case "list":
 
 			utils.List_book(books)
@@ -37,9 +46,17 @@ func main() {
 		}
 
 	} else {
+		fmt.Println(
 
-		fmt.Printf("%s uygulamasında kullanabileceğiniz komutlar : \n search => arama işlemi için \n list => listeleme işlemi için\n", "Kitaplık")
+			`Hoşgeldiniz, *Kitapp* uygulamasında kullanabileceğiniz komutlar :
 
+			Kitap satın almak için => buy 
+
+			Kitap aramak için => search  
+
+			Kitapları listelemek için => list 
+
+			Kitaplıktan kitap silmek için => delete`)
 	}
 
 }

@@ -5,6 +5,14 @@ import (
 	"strings"
 )
 
+func Buy_book() {
+
+}
+
+func Delete_book() {
+
+}
+
 // The function that gets all books in the library.
 func List_book(books []string) {
 
