@@ -10,13 +10,12 @@ import (
 	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-2-asargin-dev/utils"
 )
 
+// Book Structımıza ait metodumuzu kullanabilmek için bir struct nesnesi oluşturuyoruz.
+var book library.Book
+
 var Books []library.Book
 
 func init() {
-	utils.CreateRandomStockCode()
-	// Book Structımıza ait metodumuzu kullanabilmek için bir struct nesnesi oluşturuyoruz.
-
-	var book library.Book
 
 	books := []string{
 		"A Tale of Two Cities",
@@ -89,15 +88,19 @@ InputLoop:
 		//Checking args and routing associated functions
 		switch strings.ToLower(input_args[0]) {
 
+		//Satın alma
 		case "buy":
-			fmt.Println("Uygulama Yapım Aşamasındadır")
+			book.BuyBook(input_args[1], input_args[2])
 
+		//Silme
 		case "delete":
-			fmt.Println("Uygulama Yapım Aşamasındadır")
+			book.DeleteBook(input_args[1])
 
+		//Kitap Listeleme
 		case "list":
 			utils.List_book(Books)
 
+		//Kitap Arama
 		case "search":
 			// search argümanı sonrası girilececek değerleri Join ederek string bir arama querysi oluşturarak
 			// kitaplarla beraber search_book fonksiyonumuza parametre olarak gönderiyoruz.

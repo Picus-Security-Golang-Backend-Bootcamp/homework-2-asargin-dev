@@ -2,18 +2,11 @@ package utils
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	library "github.com/Picus-Security-Golang-Backend-Bootcamp/homework-2-asargin-dev/models/library_models"
 )
-
-func Buy_book() {
-
-}
-
-func Delete_book() {
-
-}
 
 // The function that gets all books in the library.
 func List_book(books []library.Book) {
@@ -24,9 +17,11 @@ func List_book(books []library.Book) {
 
 	} else {
 
+		fmt.Print("\nSırasıyla ID - Kitap Adı - Stok Kodu - ISBN Numarası - Stok Adedi - Sayfa Sayısı - Fiyat - Silindi\n\n")
+
 		for _, book := range books {
 
-			fmt.Printf("%d - %s\n", book.Id, book.BookName)
+			fmt.Printf("%d - %s - %d - %d - %d Adet - %d Sayfa - %d TL - %t\n", book.Id, book.BookName, book.StockCode, book.IsbnNo, book.StockQuantity, book.NumberOfPages, book.Price, book.IsDeleted)
 
 		}
 
@@ -47,7 +42,14 @@ func Search_book(search_params string, books []library.Book) {
 
 		for _, book := range books {
 			//Büyük-küçük harf duyarlılığını kaldırmak için hem kitapları hem de arama parametrelerini lowercase'e çeviriyoruz.
+			//İkinci ödev eklentileriyle beraber kullanıcı Stok Kodu ve ISBN no ile de arama yapabilmesi sağlanmıştır.
 			if strings.Contains(strings.ToLower(book.BookName), strings.ToLower(search_params)) {
+				result = append(result, book.BookName)
+
+			} else if strings.Contains(strings.ToLower(strconv.Itoa(book.IsbnNo)), strings.ToLower(search_params)) {
+				result = append(result, book.BookName)
+
+			} else if strings.Contains(strings.ToLower(strconv.Itoa(book.StockCode)), strings.ToLower(search_params)) {
 				result = append(result, book.BookName)
 			}
 		}
@@ -55,7 +57,9 @@ func Search_book(search_params string, books []library.Book) {
 		if len(result) == 0 {
 			fmt.Println("Aradığınız kriterde kitap bulunamamıştır.")
 		} else {
-			fmt.Println(result)
+			for _, value := range result {
+				fmt.Println(value)
+			}
 		}
 
 	}
