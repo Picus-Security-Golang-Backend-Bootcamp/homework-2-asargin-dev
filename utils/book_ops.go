@@ -3,6 +3,8 @@ package utils
 import (
 	"fmt"
 	"strings"
+
+	library "github.com/Picus-Security-Golang-Backend-Bootcamp/homework-2-asargin-dev/models/library_models"
 )
 
 func Buy_book() {
@@ -14,7 +16,7 @@ func Delete_book() {
 }
 
 // The function that gets all books in the library.
-func List_book(books []string) {
+func List_book(books []library.Book) {
 
 	if len(books) == 0 {
 
@@ -24,7 +26,7 @@ func List_book(books []string) {
 
 		for _, book := range books {
 
-			fmt.Println(book)
+			fmt.Printf("%d - %s\n", book.Id, book.BookName)
 
 		}
 
@@ -33,7 +35,7 @@ func List_book(books []string) {
 }
 
 // The function that searches books within written arg inputs
-func Search_book(search_params string, books []string) {
+func Search_book(search_params string, books []library.Book) {
 
 	if len(search_params) == 0 {
 
@@ -45,8 +47,8 @@ func Search_book(search_params string, books []string) {
 
 		for _, book := range books {
 			//Büyük-küçük harf duyarlılığını kaldırmak için hem kitapları hem de arama parametrelerini lowercase'e çeviriyoruz.
-			if strings.Contains(strings.ToLower(book), strings.ToLower(search_params)) {
-				result = append(result, book)
+			if strings.Contains(strings.ToLower(book.BookName), strings.ToLower(search_params)) {
+				result = append(result, book.BookName)
 			}
 		}
 
